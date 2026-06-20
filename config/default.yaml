@@ -1,0 +1,116 @@
+# ======== CONFIGURACIÓN GLOBAL DEL PIPELINE ========
+
+# ==== BASES DE DATOS ====
+
+databases:
+
+  kraken2:
+    db: "databases/kraken2_standard-8"
+
+  abricate:
+    vfdb: "vfdb"
+    card: "card"
+
+  mobile_element_finder:
+    db: "databases/mobile_element_finder"
+
+# ==== ENTORNOS CONDA ====
+
+conda_envs:
+
+  yaml: "yaml_env"
+
+  qc: "qc_tools"
+
+  multiqc: "multiqc_env"
+
+  assembly: "assembly_env"
+
+  taxonomy: "taxonomy_env"
+
+  annotation: "annotation_env"
+
+  mge: "mge_env"
+
+  filtering: "annotation_env"
+
+  integration: "integration_env"
+
+  scoring: "integration_env"
+
+  report: "integration_env"
+
+
+# ==== CONTROL DE CALIDAD ====
+
+qc:
+
+  fastp:
+    qualified_quality_phred: 20
+    length_required: 50
+    detect_adapter_for_pe: false
+
+
+# ==== ENSAMBLAJE ====
+
+assembly:
+
+  megahit:
+    min_contig_len: 500
+    presets: ""
+
+
+# ==== TAXONOMÍA ====
+
+taxonomy:
+
+  kraken2:
+    memory_mapping: true
+
+
+# ==== FILTRADO ====
+
+filtering:
+
+  vfdb:
+    min_identity: 90
+    min_coverage: 80
+
+  card:
+    min_identity: 90
+    min_coverage: 80
+
+  mge:
+    min_identity: 0.90
+    min_coverage: 0.80
+
+
+# ==== SCORING ====
+
+scoring:
+
+  weights:
+    virulence: 1.0
+    amr: 1.0
+    mge: 1.5
+
+  thresholds:
+    low: 10
+    high: 30
+
+
+# ==== REPORT ====
+
+report:
+
+  top_taxa: 10
+  top_genes: 15
+  top_mge: 10
+
+  plots:
+    dpi: 300
+    barplot_width: 12
+    barplot_height: 6
+
+    piechart_width: 7
+    piechart_height: 7
